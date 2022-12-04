@@ -7,14 +7,14 @@ function App() {
   const [stocks, setStocks] = useState([]);
 
   useEffect(() => {
-   fetch('https://fundamentus-parser.deno.dev/')
+    fetch('https://fundamentus-parser.deno.dev/')
       .then(r => r.json())
       .then(r => setStocks(r));
   }, []);
 
   return (
-    <div className="App">
-      <div className="table-container">
+    <div className='App'>
+      <div className='table-container'>
         {stocks.length > 0 && (
           <table className='table is-striped is-bordered is-hoverable is-narrow'>
             <thead>
@@ -24,9 +24,9 @@ function App() {
             </thead>
             <tbody>
               {stocks.map((stock: any) => (
-                <tr 
-                  key={uuid()} 
-                  onClick={() => {window.location.href = `https://fundamentus.com.br/detalhes.php?papel=${Object.values(stock)[0]}`}}
+                <tr
+                  key={uuid()}
+                  onClick={() => { window.location.href = `https://fundamentus.com.br/detalhes.php?papel=${Object.values(stock)[0]}` }}
                   className='is-clickable'
                 >
                   {Object.values(stock).map((value: any) => (
