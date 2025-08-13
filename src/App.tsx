@@ -23,8 +23,16 @@ function App() {
 
   const handleSort = (column: string) => {
     if (column === sortColumn) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+      // Cycle through: asc -> desc -> clear
+      if (sortDirection === 'asc') {
+        setSortDirection('desc');
+      } else if (sortDirection === 'desc') {
+        // Clear sorting on third click
+        setSortColumn('');
+        setSortDirection('asc');
+      }
     } else {
+      // Start sorting by new column
       setSortColumn(column);
       setSortDirection('asc');
     }
