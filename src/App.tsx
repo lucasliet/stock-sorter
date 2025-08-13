@@ -22,12 +22,17 @@ function App() {
 
 
   const handleSort = (column: string) => {
-    if (column === sortColumn) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
+    if (column !== sortColumn) {
       setSortColumn(column);
       setSortDirection('asc');
+      return;
     }
+    if (sortDirection === 'desc') {
+      setSortColumn('');
+      setSortDirection('asc');
+      return;
+    }
+    setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
   };
 
   const sortStocks = (stocks: Stock[], sortColumn: string, sortDirection: SortDirection): Stock[] => {
